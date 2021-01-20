@@ -12,6 +12,8 @@ def go_to_login_page(self):
 link = "http://selenium1py.pythonanywhere.com/"
 # link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209?promo=midsummer"
 
+
+# task 4.3.11
 @pytest.mark.login_guest
 class TestLoginFromMainPage():
     @pytest.fixture(scope="function", autouse=True)
@@ -38,7 +40,7 @@ class TestLoginFromMainPage():
         page.open()
         page.should_be_login_link()
 
-
+# task 4.3.10
 def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     page = MainPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
     page.open()                      # открываем страницу
