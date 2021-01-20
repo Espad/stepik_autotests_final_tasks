@@ -24,44 +24,46 @@ import time
 #     "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"
 # ]
 
-# @pytest.mark.parametrize("link", links)
-# def test_guest_can_add_product_to_basket(browser, link):
-#     page = ProductPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
-#     page.open()                      # открываем страницу
-#     page.add_to_cart() # добавляем товары в корзину
-#     page.solve_quiz_and_get_code() # выполняем условие из задания
-#     # time.sleep(180)
+@pytest.mark.need_review
+@pytest.mark.parametrize("link", links)
+def test_guest_can_add_product_to_basket(browser, link):
+    page = ProductPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
+    page.open()                      # открываем страницу
+    page.add_to_cart() # добавляем товары в корзину
+    page.solve_quiz_and_get_code() # выполняем условие из задания
+    # time.sleep(180)
 
-#     page.check_product_name() # Название товара в сообщении должно совпадать с тем товаром, который вы действительно добавили.
-#     page.check_basket_price() # Стоимость корзины совпадает с ценой товара.
-
-
-# links = [
-#     'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
-# ]
-
-# @pytest.mark.xfail
-# @pytest.mark.parametrize("link", links)
-# def test_guest_cant_see_success_message_after_adding_product_to_basket(browser, link):
-#     page = ProductPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
-#     page.open()                      # открываем страницу
-#     page.add_to_cart() # добавляем товары в корзину
-#     page.should_not_be_success_message() # Проверяем, что нет сообщения об успехе с помощью is_not_element_present
+    page.check_product_name() # Название товара в сообщении должно совпадать с тем товаром, который вы действительно добавили.
+    page.check_basket_price() # Стоимость корзины совпадает с ценой товара.
 
 
-# @pytest.mark.parametrize("link", links)
-# def test_guest_cant_see_success_message(browser, link):
-#     page = ProductPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
-#     page.open()                      # открываем страницу
-#     page.should_not_be_success_message() # Проверяем, что нет сообщения об успехе с помощью is_not_element_present
+
+links = [
+    'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
+]
+
+@pytest.mark.xfail
+@pytest.mark.parametrize("link", links)
+def test_guest_cant_see_success_message_after_adding_product_to_basket(browser, link):
+    page = ProductPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
+    page.open()                      # открываем страницу
+    page.add_to_cart() # добавляем товары в корзину
+    page.should_not_be_success_message() # Проверяем, что нет сообщения об успехе с помощью is_not_element_present
 
 
-# @pytest.mark.parametrize("link", links)
-# def test_message_disappeared_after_adding_product_to_basket(browser, link):
-#     page = ProductPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
-#     page.open()                      # открываем страницу
-#     page.add_to_cart() # добавляем товары в корзину
-#     page.should_disappeared() # Проверяем, что пропало сообщение о добавлении в корзину
+@pytest.mark.parametrize("link", links)
+def test_guest_cant_see_success_message(browser, link):
+    page = ProductPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
+    page.open()                      # открываем страницу
+    page.should_not_be_success_message() # Проверяем, что нет сообщения об успехе с помощью is_not_element_present
+
+
+@pytest.mark.parametrize("link", links)
+def test_message_disappeared_after_adding_product_to_basket(browser, link):
+    page = ProductPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
+    page.open()                      # открываем страницу
+    page.add_to_cart() # добавляем товары в корзину
+    page.should_disappeared() # Проверяем, что пропало сообщение о добавлении в корзину
 
 
 links = [
@@ -86,6 +88,7 @@ class TestUserAddToBasketFromProductPage():
         page.register_new_user(self.login, self.password) # регистрируем нового пользователя
         page.should_be_authorized_user() # проверяем, что пользователь авторизован
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self):
         page = ProductPage(self.browser, self.link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
         page.open()                      # открываем страницу
@@ -112,6 +115,7 @@ def test_guest_should_see_login_link_on_product_page(browser, link):
     page.open()                      # открываем страницу
     page.should_be_login_link()
 
+@pytest.mark.need_review
 @pytest.mark.parametrize("link", links)
 def test_guest_can_go_to_login_page_from_product_page(browser, link):
     page = LoginPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
@@ -119,6 +123,7 @@ def test_guest_can_go_to_login_page_from_product_page(browser, link):
     page.go_to_login_page()
     page.should_be_login_page()      # проверяем, что перешли на страницу с авторизацией
 
+@pytest.mark.need_review
 @pytest.mark.parametrize("link", links)
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser, link):
     page = ProductPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
