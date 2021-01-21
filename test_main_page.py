@@ -16,7 +16,7 @@ links = [
 
 
 # task 4.3.11
-# @pytest.mark.xfail
+# Группировка тестов: setup 
 @pytest.mark.login_guest
 @pytest.mark.parametrize("link", links)
 class TestLoginFromMainPage():
@@ -39,6 +39,7 @@ class TestLoginFromMainPage():
         page.should_be_login_link()
 
 # task 4.3.10
+# Задание: наследование и отрицательные проверки
 @pytest.mark.parametrize("link", links)
 def test_guest_cant_see_product_in_basket_opened_from_main_page(browser, link):
     page = MainPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 

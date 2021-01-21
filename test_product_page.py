@@ -7,6 +7,7 @@ from .pages.basket_page import BasketPage
 
 # part of test is deselected due to decrease time of testing
 # task 4.3.4
+# Задание: независимость контента, ищем баг
 links = [    
     "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear",
     "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019",
@@ -41,6 +42,7 @@ links = [
 ]
 
 # task 4.3.6
+# Задание: отрицательные проверки
 @pytest.mark.xfail
 @pytest.mark.parametrize("link", links)
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser, link):
@@ -49,14 +51,12 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser, 
     page.add_to_cart() # добавляем товары в корзину
     page.should_not_be_success_message() # Проверяем, что нет сообщения об успехе с помощью is_not_element_present
 
-# task 4.3.6
 @pytest.mark.parametrize("link", links)
 def test_guest_cant_see_success_message(browser, link):
     page = ProductPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
     page.open()                      # открываем страницу
     page.should_not_be_success_message() # Проверяем, что нет сообщения об успехе с помощью is_not_element_present
 
-# task 4.3.6
 @pytest.mark.xfail
 @pytest.mark.parametrize("link", links)
 def test_message_disappeared_after_adding_product_to_basket(browser, link):
@@ -71,6 +71,7 @@ links = [
 ]
 
 # task 4.3.13
+# Задание: группировка тестов и setup
 @pytest.mark.login_guest
 @pytest.mark.parametrize("link", links)
 class TestUserAddToBasketFromProductPage():
@@ -111,6 +112,7 @@ links = [
 ]
 
 # task 4.3.8
+# Плюсы наследования: пример
 @pytest.mark.parametrize("link", links)
 def test_guest_should_see_login_link_on_product_page(browser, link):
     page = ProductPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
@@ -127,6 +129,7 @@ def test_guest_can_go_to_login_page_from_product_page(browser, link):
     page.should_be_login_page()      # проверяем, что перешли на страницу с авторизацией
 
 # task 4.3.10
+# Задание: наследование и отрицательные проверки
 @pytest.mark.need_review
 @pytest.mark.parametrize("link", links)
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser, link):
