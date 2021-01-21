@@ -26,6 +26,6 @@ pytest --language=fr
 или pytest -s --language=fr, если требуется добавить в output вывод принтов из кода
 
 
-или напрямую с указанием имени файла и группы тестов
+или напрямую с указанием группы тестов
 
 pytest -v --tb=line --language=en -m need_review
