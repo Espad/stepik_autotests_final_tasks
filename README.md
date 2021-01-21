@@ -13,7 +13,7 @@ pytest 6.2.1
 # запуск теста
 доступные параметры:
 
-language, язык (en, ru, fr, sp), по умолчанию es.
+language, язык (en, ru, fr, sp), по умолчанию en.
 
 browser_name, тип браузера (хром, firefox), по умолчанию - хром.
 
@@ -26,6 +26,6 @@ pytest --language=fr
 или pytest -s --language=fr, если требуется добавить в output вывод принтов из кода
 
 
-или напрямую с указанием имени файла
+или напрямую с указанием имени файла и группы тестов
 
-pytest --language=es test_items.py
+pytest -v --tb=line --language=en -m need_review
