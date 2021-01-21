@@ -9,39 +9,38 @@ def go_to_login_page(self):
 
 
 
-link = "http://selenium1py.pythonanywhere.com/"
-# link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209?promo=midsummer"
+links = [
+    "http://selenium1py.pythonanywhere.com/",
+    # link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209?promo=midsummer"
+]
 
 
 # task 4.3.11
+# @pytest.mark.xfail
 @pytest.mark.login_guest
+@pytest.mark.parametrize("link", links)
 class TestLoginFromMainPage():
     @pytest.fixture(scope="function", autouse=True)
-    def setup(self):
-        self.product = ProductFactory(title = "Best book created by robot")
-        # создаем по апи
-        self.link = self.product.link
-        yield
-        # после этого ключевого слова начинается teardown
-        # выполнится после каждого теста в классе
-        # удаляем те данные, которые мы создали 
-        self.product.delete()
-    def test_guest_can_go_to_login_page(self, browser):
-        page = MainPage(browser, self.link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
+    def setup(self, browser, link):
+        self.link = link
+        self.browser = browser
+
+    def test_guest_can_go_to_login_page(self):
+        page = MainPage(self.browser, self.link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
         page.open()                      # открываем страницу
         page.should_be_login_link()      # проверяем, если ли линка на форму логина
         page.go_to_login_page()          # выполняем метод страницы — переходим на страницу логина
-        login_page = LoginPage(browser, browser.current_url)
+        login_page = LoginPage(self.browser, self.browser.current_url)
         login_page.should_be_login_page()
 
-
-    def test_guest_should_see_login_link(self, browser):
-        page = MainPage(browser, self.link)
+    def test_guest_should_see_login_link(self):
+        page = MainPage(self.browser, self.link)
         page.open()
         page.should_be_login_link()
 
 # task 4.3.10
-def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
+@pytest.mark.parametrize("link", links)
+def test_guest_cant_see_product_in_basket_opened_from_main_page(browser, link):
     page = MainPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
     page.open()                      # открываем страницу
     page.should_be_basket_page_link()

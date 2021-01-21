@@ -5,25 +5,21 @@ from .pages.login_page import LoginPage
 from .pages.basket_page import BasketPage
 
 
-# links = [
-#     "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear",
-#     "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
-# ]
-
+# part of test is deselected due to decrease time of testing
 # task 4.3.4
 links = [    
     "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear",
     "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019",
     "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
-    "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
-    "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer2",
-    "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer3",
-    "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer4",
-    "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer5",
-    "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer6",
+    # "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
+    # "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer2",
+    # "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer3",
+    # "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer4",
+    # "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer5",
+    # "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer6",
     pytest.param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer7", marks=pytest.mark.xfail),
-    "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer8",
-    "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"
+    # "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer8",
+    # "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"
 ]
 
 @pytest.mark.need_review
@@ -61,6 +57,7 @@ def test_guest_cant_see_success_message(browser, link):
     page.should_not_be_success_message() # Проверяем, что нет сообщения об успехе с помощью is_not_element_present
 
 # task 4.3.6
+@pytest.mark.xfail
 @pytest.mark.parametrize("link", links)
 def test_message_disappeared_after_adding_product_to_basket(browser, link):
     page = ProductPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
@@ -72,7 +69,6 @@ def test_message_disappeared_after_adding_product_to_basket(browser, link):
 links = [
     "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
 ]
-
 
 # task 4.3.13
 @pytest.mark.login_guest
@@ -107,6 +103,7 @@ class TestUserAddToBasketFromProductPage():
         page = ProductPage(self.browser, self.link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
         page.open()                      # открываем страницу
         page.should_not_be_success_message() # Проверяем, что нет сообщения об успехе с помощью is_not_element_present
+
 
 
 links = [
