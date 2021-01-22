@@ -1,6 +1,8 @@
 # stepik_autotests_final_tasks
  repo for final project on course of automatisation testing using selenium and python
  
+Оставлен минимум комментариев, т.к. в задании сказано, для того, чтобы остальным более просто разобраться в происходящем.
+ 
 software versions and env:
 
 win10x64
