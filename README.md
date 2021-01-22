@@ -2,7 +2,9 @@
  repo for final project on course of automatisation testing using selenium and python
  
 Оставлен минимум комментариев, т.к. в задании сказано, для того, чтобы остальным более просто разобраться в происходящем.
- 
+
+Также оставлены git* файлы и файл с лицензиями, т.к. их лучше указывать при создании репозитория.
+
 software versions and env:
 
 win10x64
