@@ -10,7 +10,7 @@ links = [
 
 
 # task 4.3.11
-# Группировка тестов: setup 
+# Группировка тестов: setup
 @pytest.mark.login_guest
 @pytest.mark.parametrize("link", links)
 class TestLoginFromMainPage():
@@ -20,10 +20,13 @@ class TestLoginFromMainPage():
         self.browser = browser
 
     def test_guest_can_go_to_login_page(self):
-        page = MainPage(self.browser, self.link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
+        # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
+        page = MainPage(self.browser, self.link)
         page.open()                      # открываем страницу
-        page.should_be_login_link()      # проверяем, если ли линка на форму логина
-        page.go_to_login_page()          # выполняем метод страницы — переходим на страницу логина
+        # проверяем, если ли линка на форму логина
+        page.should_be_login_link()
+        # выполняем метод страницы — переходим на страницу логина
+        page.go_to_login_page()
         login_page = LoginPage(self.browser, self.browser.current_url)
         login_page.should_be_login_page()
 
@@ -32,17 +35,18 @@ class TestLoginFromMainPage():
         page.open()
         page.should_be_login_link()
 
+
 # task 4.3.10
 # Задание: наследование и отрицательные проверки
 @pytest.mark.parametrize("link", links)
 def test_guest_cant_see_product_in_basket_opened_from_main_page(browser, link):
-    page = MainPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
+    # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
+    page = MainPage(browser, link)
     page.open()                      # открываем страницу
     page.should_be_basket_page_link()
     page.go_to_basket_page()         # переходим в корзину
     basket_page = BasketPage(browser, browser.current_url)
-    basket_page.should_be_empty_basket_message() # проверяем что есть сообщение о том, что корзина пуста
-    basket_page.should_be_empty_basket() # проверяем что корзина пуста
-
-
-
+    # проверяем что есть сообщение о том, что корзина пуста
+    basket_page.should_be_empty_basket_message()
+    # проверяем что корзина пуста
+    basket_page.should_be_empty_basket()

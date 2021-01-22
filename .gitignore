@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+# venv folder
+stepik_autotest_env
+
+
 # Distribution / packaging
 .Python
 build/
@@ -124,3 +128,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 test_items.py
+.vscode/settings.json

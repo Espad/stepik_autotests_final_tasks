@@ -12,7 +12,7 @@ class BasePageLocators():
 
 class BasketPageLocators():
     BASKET_EMPTY_MESSAGE = (By.CSS_SELECTOR, "#content_inner > p")
-    BASKET_ITEM_EXIST_SELECTOR = (By.CSS_SELECTOR, "#basket_formset")  
+    BASKET_ITEM_EXIST_SELECTOR = (By.CSS_SELECTOR, "#basket_formset")
 
 
 class MainPageLocators():
@@ -27,7 +27,7 @@ class LoginPageLocators():
     REGISTER_PASSWORD = (By.CSS_SELECTOR, "#id_registration-password1")
     REGISTER_PASSWORD_CONFIRM = (By.CSS_SELECTOR, "#id_registration-password2")
     REGISTER_BUTTON = (By.CSS_SELECTOR, "[name='registration_submit']")
-    
+
 
 class ProductPageLocators():
     ADD_TO_CART_BUTTON = (By.CSS_SELECTOR, "#add_to_basket_form > button")

@@ -3,7 +3,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 
-
 def pytest_addoption(parser):
     parser.addoption('--browser_name', action='store', default="chrome",
                      help="Choose browser: chrome or firefox")
@@ -27,7 +26,8 @@ def browser(request):
         print("\nstart chrome browser for test..")
 
         options = Options()
-        options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
+        options.add_experimental_option(
+            'prefs', {'intl.accept_languages': user_language})
         # options.add_argument('headless')
         options.add_argument('window-size=1920x935')
         browser = webdriver.Chrome(options=options)
